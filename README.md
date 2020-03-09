@@ -6,7 +6,8 @@ This repository contains code written by me, Konstantinos Letros, as a project f
 
 ## Implementations
 
-### Part 1 - Behavioral Analysis of a Non Linear System
+### Part A - Behavioral Analysis of a Non Linear System
+
 This part contains the behavioral analysis of a system including the non linear function M shown bellow.
 
 Block Diagram              |  Non Linear Function m(e)
@@ -17,8 +18,23 @@ Behavioral Anaylisis is achivied by using different inputs r, initial conditions
 
 ![Response Example](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/resp13.jpg)
 
-### Part 2 - Control of a Non Linear Robotic System
+### Part B - Control of a Non Linear Robotic System
 
+This part contains the construction and derivation of a suitable non linear controller as well as the corresponding non linear control analysis to prove system's stability. Moreover, in order to approach a realistic scenario, all of the parameters taken place have uncertainties.
+
+![Robotic_System](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/robot.png)
+
+Furthermore, apart from apachieving stability, the controller should also be able to follow a certain sinusodial trajectory after a very short transitional period, as shown bellow.
+
+Controller                 |  Sinusodial Trajectory
+:-------------------------:|:-------------------------:
+![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/Acon2.jpg)  |  ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/Ap3.jpg)
+
+Finaly, a parameter estimation procedure takes place in order to estimate the currently uknown - exact values of the uncertain parameters.
+
+b Parameter Estimation     |  h Parameter Estimation 
+:-------------------------:|:-------------------------:
+![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/b_est_1.jpg)  |  ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/h_est_1.jpg)
 
 ## Applications used for this implementation:
  - MathWorks MATLAB
