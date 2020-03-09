@@ -1,0 +1,1146 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[greek,english]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{alphabeta}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{bookmark} 
+\usepackage{stfloats}
+\usepackage[export]{adjustbox}
+\usepackage{amssymb}
+\usepackage[ampersand]{easylist}
+\newcommand\uparrowtail{\mathrel{\rotatebox{90}{$\rightarrowtail$}}}
+\newcommand\downarrowtail{\mathrel{\rotatebox{90}{$\leftarrowtail$}}}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=18mm,
+ top=20mm,
+ }
+ \setcounter{secnumdepth}{0}
+
+
+\begin{document}
+\author{Κωνσταντίνος Λέτρος 8851}
+
+ \begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
+	
+	\center % Centre everything on the page
+	
+	%------------------------------------------------
+	%	Headings
+	%------------------------------------------------
+	
+	\textsc{\LARGE ΠΟΛΥΤΕΧΝΙΚΗ ΣΧΟΛΗ ΑΠΘ}\\[1.5cm] % Main heading such as the name of your university/college
+	
+	\textsc{\Large ΤΜΗΜΑ ΗΛΕΚΤΡΟΛΟΓΩΝ ΜΗΧΑΝΙΚΩΝ ΚΑΙ ΜΗΧΑΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ}\\[0.5cm] % Major heading such as course name
+	
+	 
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\HRule\\[0.4cm]
+	
+	{\huge\bfseries Συστήματα Αυτομάτου Ελέγχου ΙΙΙ}\\[0.4cm] % Title of your document
+	
+	\HRule\\[1.5cm]
+	
+	%------------------------------------------------
+	%	Author(s)
+	%------------------------------------------------
+	{\huge\bfseries Κωνσταντίνος Λέτρος \newline 8851}\\[0.4cm]	
+	\vfill	
+	{\huge\bfseries Εργασία}\\[0.4cm]  % Title of your document
+	% If you don't want a supervisor, uncomment the two lines below and comment the code above
+	%{\large\textit{Author}}\\
+	%John \textsc{Smith} % Your name
+	
+	%------------------------------------------------
+	%	Date
+	%------------------------------------------------
+	
+	\vfill\vfill\vfill % Position the date 3/4 down the remaining page
+	
+	{\large\today} % Date, change the \today to a set date if you want to be precise
+	
+	%------------------------------------------------
+	%	Logo
+	%------------------------------------------------
+	
+	%\vfill\vfill
+	%\includegraphics[width=0.2\textwidth]{placeholder.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+	 
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Push the date up 1/4 of the remaining page
+	
+\end{titlepage}
+
+
+\newpage
+\part{Τμήμα Α}
+\section{Μέρος Α}
+\subsection{Ερώτημα Ι}
+Δίνεται το μπλοκ διάγραμμα του Συστήματος Κλειστού Βρόχου που φαίνεται παρακάτω 
+\\
+\includegraphics[width=\linewidth]{1a.jpg}
+\centerline{Σχήμα 1: Σύστημα Κλειστού Βρόχου όταν M=1}
+\\ \\ \\
+Από το μπλοκ διάγραμμα του Σχήματος 1, έχουμε
+\\
+\[ (r-y)\frac{4}{s(s+1)}=y \Rightarrow 4r=4y+s(s+1)y \Rightarrow 4r=y(4+s^{2}+s) \Rightarrow \frac{y}{r}=\frac{4}{s^{2}+s+4}\]
+\\
+Η Χαρακτηριστική εξίσωση είναι:
+\[ s^2+s+4=0 \]
+και επειδή γενικά
+\[ s^2+2\zeta\omega_{n}s+\omega_{n}^{2}=0 \]
+έχουμε τελικά
+\[ \omega_{n}^{2}=4 \Rightarrow \omega_{n}=2 \qquad \zeta=\frac{1}{2\omega_{n}} \Rightarrow \zeta=\frac{1}{4}=0.25 \]
+Επίσης, δεδομένου ότι το σφάλμα του συστήματος ορίζεται ως $e=r-y$, έχουμε:
+\[ \frac{y}{r}= \frac{4}{s^2+s+4} \Rightarrow \frac{r-y}{r}= 1-\frac{4}{s^2+s+4} \Rightarrow \frac{e}{r}= \frac{s^2+s}{s^2+s+4} \Rightarrow (s^2+s+4)e=(s^2+s)r \xRightarrow{I.L.T} \]
+\[ \Rightarrow \frac{d^2e(t)}{dt^2} +\frac{de(t)}{dt}+4e(t)=\frac{d^2r(t)}{dt^2}+\frac{dr(t)}{dt} \]
+Ή αλλιώς
+\[ \ddot{e}=-\dot{e}-4e+\ddot{r}+\dot{r} \]
+\\
+Η τάξη του συστήματος είναι 2, επομένως και το πλήθος των μεταβλητών κατάστασης θα είναι 2. Επιλέγουμε
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                  x_{1}=e \\
+                  x_{2}=\dot{e}             
+                \end{array}
+              \right.$
+              \quad άρα \quad
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=\dot{e}=x_{2} \quad(1)\\
+                  \dot{x_{2}}=\ddot{e}=-x_{2}-4x_{1}+\ddot{r}+\dot{r} \quad(2)
+                \end{array}
+              \right. 
+$
+\\ \\
+Επομένως το σύστημα μπορεί να γραφτεί στη μορφή
+\[ \dot{x} =  
+\begin{bmatrix}
+   \quad 0     &  \quad  1 \\
+    -4    &   -1 
+\end{bmatrix}
+x+
+\begin{bmatrix}
+    0 \\
+    1
+\end{bmatrix}
+\dot{r}
++
+\begin{bmatrix}
+    0 \\
+    1
+\end{bmatrix}
+\ddot{r}
+ \]
+\[e=
+\begin{bmatrix}
+    1  & 0
+\end{bmatrix}
+x\]
+όπου
+\[x=
+\begin{bmatrix}
+   x_{1}  & x_{2}
+\end{bmatrix}^{T}
+\qquad
+\dot{x}=
+\begin{bmatrix}
+   \dot{x_{1}}  & \dot{x_{2}}
+\end{bmatrix}^{T}
+\qquad\]
+\subsection{Ερώτημα ΙΙ}
+Για να βρούμε το σημείο ισορροπίας λύνουμε την εξίσωση
+\[ \dot{x}=0 \]
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=x_{2}=0 \\
+                  \dot{x_{2}}=-4x_{1}+\ddot{r}+\dot{r}=0
+                \end{array}
+              \right. 
+\Rightarrow$
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 x_{1}=\frac{1}{4} \left( \ddot{r}+\dot{r} \right)
+                \end{array}
+              \right. 
+$
+\\ \\ 
+
+α) Αν $r(t)=u(t)$, τότε το σημείο ισορροπίας είναι το $(0,0)$
+\\
+
+β) Αν  $r(t)=1.2 tu(t)$, τότε το σημείο ισορροπίας είναι το $(0.3,0)$
+\\ \\
+όπου $u(t)$ η βηματική συνάρτηση, unit step function.
+\\ \\
+Το σύστημα είναι ευσταθές αφού είναι γραμμικό, χρονικά αμετάβλητο και το χαρακτηριστικό του πολυώνυμο έχει όλες του τις ρίζες στο αριστερό μιγαδικό ημιεπίπεδο.
+\subsection{Ερώτημα ΙΙΙ}
+Με διαίρεση των $(2)$ και $(1)$ έχουμε:
+\[ \frac{dx_{2}}{dx_{1}}= \frac{\ddot{r}+\dot{r}-4x_{1}-x_{2}}{x_{2}} \]
+Για βηματική είσοδο: \[ \frac{dx_{2}}{dx_{1}}= -\frac{4x_{1}+x_{2}}{x_{2}}  \]
+Για είσοδο συνάρτηση ράμπας κλίσης 1.2:  \[ \frac{dx_{2}}{dx_{1}}= \frac{1.2-4x_{1}-x_{2}}{x_{2}}  \]
+
+
+Οι χρονικές αποκρίσεις των μεταβλητών κατάστασης για τις διάφορες αρχικές συνθήκες, με χρήση της συνάρτησης ode45 του Matlab, φαίνονται στις παρακάτω γραφικές παραστάσεις:
+\\ \\
+\includegraphics[width=\linewidth]{resp1.jpg}
+\centerline{Σχήμα 2:}
+\centerline{Χρονική Απόκριση Γραμμικού Συστήματος}{
+\centerline{με είσοδο βηματική συνάρτηση (1)}
+\\ \\
+\includegraphics[width=\linewidth]{resp2.jpg}
+\centerline{Σχήμα 3:}
+\centerline{Χρονική Απόκριση Γραμμικού Συστήματος}{
+\centerline{με είσοδο βηματική συνάρτηση (2)}
+\\ \\
+Αρχικά, εξετάζουμε την περίπτωση βηματικής εισόδου για το ευσταθές γραμμικό και χρονικά αμετάβλητο σύστημα σφάλματος όπως φαίνεται στο Σχήμα 1. Οι αποκρίσεις των Σχημάτων 2 και 3 παρουσιάζουν τη συμπεριφορά των μεταβλητών κατάστασης οι οποίες, ανεξάρτητα από τις αρχικές συνθήκες οδηγούνται μετά από πεπερασμένο χρόνο εκθετικά στο σημείο ισορροπίας, δηλαδή στο (0,0). Το αποτέλεσμα αυτό ήταν αναμενόμενο, αφού αποτελεί βασικό χαρακτηριστικό των ευσταθών γραμμικών και χρονικά αμετάβλητων συστημάτων όπως επίσης και το γεγονός ότι έχουν μοναδικό σημείο ισορροπίας. Επιπλέον, επειδή το σύστημα είναι δευτεροτάξιο με τιμή του συντελεστή απόσβεσης $\zeta=\frac{1}{4}$ να είναι ανάμεσα στο μηδέν και στο ένα, δηλαδή οι ρίζες του χαρακτηριστικού πολυωνύμου είναι συζηγείς μιγαδικές, αναμένουμε υπερίψωση στις αποκρίσεις του συστήματος ενώ ο χρόνος αποκατάστασης θα είναι $t_s \approx \frac{4.16}{\zeta \omega_n}=8.32 sec$ όπως φαίνεται και στα σχήματα. 
+\\ \\
+\includegraphics[width=\linewidth]{slope3.jpg}
+\centerline{Σχήμα 4:}
+\centerline{Φασικό Πορτραίτο Γραμμικού Συστήματος}
+\centerline{με είσοδο βηματική συνάρτηση}
+\\ \\
+Το φασικό πορτραίτο του συστήματος του Σχήματος 4 επαληθεύει το χαρακτηριστικό των ευσταθών γραμμικών και χρονικά αμετάβλητων συστημάτων που αναφέρθηκε προηγουμένως, ότι δηλαδή ανεξαρτήτως αρχικών συνθηκών το σύστημα θα συγκλίνει εκθετικά στο σημείο ισορροπίας. Παρατηρούμε ακόμα πως οι τροχιές του συστήματος δεν τέμνονται μεταξύ τους, όπως συμβαίνει στα γραμμικά χρονικά αμετάβλητα συστήματα.
+\\ \\
+\includegraphics[width=\linewidth]{resp4.jpg}
+\centerline{Σχήμα 5:}
+\centerline{Χρονική Απόκριση Γραμμικού Συστήματος (1)}{
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 1.2}
+\\ \\
+\includegraphics[width=\linewidth]{resp5.jpg}
+\centerline{Σχήμα 6:}
+\centerline{Χρονική Απόκριση Γραμμικού Συστήματος (2)}{
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 1.2}
+\\ \\
+Όμοια στην περίπτωση εισόδου συνάρτησης ράμπας με κλίση $V=1.2$ το σύστημα παραμένει γραμμικό και χρονικά αμετάβλητο. Επομένως οι αποκρίσεις των Σχημάτων 5 και 6 παρουσιάζουν παρόμοια χαρακτηριστικά με αυτά των 3 και 4, με τη διαφορά ότι τώρα το σημείο ισορροπίας είναι το (0.3,0) όπως φαίνεται από τις χρονικές αποκρίσεις των $x_1,x_2$.
+\\ \\
+\includegraphics[width=\linewidth]{slope6.jpg}
+\centerline{Σχήμα 7:}
+\centerline{Φασικό Πορτραίτο Γραμμικού Συστήματος}{
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 1.2}
+\\ \\ \\
+Έτσι και το φασικό πορτραίτο του Σχήματος 7 επιβεβαιώνει τη σύγκλιση της λύσης του συστήματος στο σημείο ισορροπίας.
+\newpage
+\section{Μέρος Β}
+\subsection{Ερώτημα Ι}
+Στη συνέχεια δίνεται το μπλοκ διάγραμμα ενός τροποποιήμενου Συστήματος Κλειστού Βρόχου, στο οποίο εμφανίζεται η μη γραμμικότητα $M$ όπως φαίνεται παρακάτω
+\\
+\includegraphics[width=\linewidth]{1b.jpg}
+\centerline{Σχήμα 4: Σύστημα Κλειστού Βρόχου}
+\\ \\ \\
+Από το μπλοκ διάγραμμα του Σχήματος 1, έχουμε
+\\
+\[ (r-y)\frac{4M}{s(s+1)}=y \Rightarrow 4Mr=4My+s(s+1)y \Rightarrow 4rM=y(4M+s^{2}+s) \Rightarrow \frac{y}{r}=\frac{4M}{s^{2}+s+4M}\]
+\\
+\[ \frac{y}{r}= \frac{4M}{s^2+s+4M} \Rightarrow \frac{r-y}{r}= 1-\frac{4M}{s^2+s+4M}\Rightarrow\] 
+\[  \frac{e}{r}= \frac{s^2+s}{s^2+s+4M} \Rightarrow (s^2+s+4M)e=(s^2+s)r \xRightarrow{I.L.T}\] 
+\[\frac{d^2e(t)}{dt^2} +\frac{de(t)}{dt}+4m(e,\dot{e})=\frac{d^2r(t)}{dt^2}+\frac{dr(t)}{dt} \]
+Ή αλλιώς
+\[ \ddot{e}=-\dot{e}-4m(e,\dot{e})+\ddot{r}+\dot{r} \]
+\includegraphics[width=\linewidth]{m_func.jpg}
+\centerline{Σχήμα 8: Συνάρτηση $m(e,\dot{e})$}
+\\ \\ \\
+Η τάξη του συστήματος είναι 2, επομένως και το πλήθος των μεταβλητών κατάστασης θα είναι 2. Επιλέγουμε
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                  x_{1}=e \\
+                  x_{2}=\dot{e}             
+                \end{array}
+              \right.$
+              \quad άρα \quad
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=\dot{e}=x_{2} \quad(3)\\
+                  \dot{x_{2}}=\ddot{e}=-x_{2}-4m(x_{1},x_{2})+\ddot{r}+\dot{r} \quad(4)
+                \end{array}
+              \right. 
+$ \\
+\\ \\
+όπου
+\\ \\
+$ m(x_{1},x_{2})= 0.2 [ u(x_{1}-0.2)u(x_{2})+u(x_{1}-0.1)u(-x_{2})] -0.2[u(-x_{1}-0.1)u(x_{2})+u(-x_{1}-0.2)u(-x_{2}) ] $ \quad
+και $u(t)$ η βηματική συνάρτηση, unit step function.
+\\ \\
+Για να βρούμε τα σημεία ισορροπίας λύνουμε την εξίσωση
+\[ \dot{x}=0 \]
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=x_{2}=0 \\
+                  \dot{x_{2}}=-4m(x_{1},0)+\ddot{r}+\dot{r}=0
+                \end{array}
+              \right. 
+\Rightarrow$
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 m(x_{1},0)=\frac{1}{4} \left( \ddot{r}+\dot{r} \right)
+                \end{array}
+              \right. 
+$
+\\ \\ \\
+Για βηματική είσοδο: 
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 m(x_{1},0)=0 
+                \end{array}
+              \right. \Rightarrow 
+               \left\{
+                \begin{array}{ll}
+                  x_{1} \in (-0.2 , 0.2) \\
+                 x_2=0 
+                \end{array}
+              \right.
+$
+\\ \\
+Για είσοδο συνάρτηση ράμπας κλίσης 1.2:
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 m(x_{1},0)=0.3 
+                \end{array}
+              \right. \Rightarrow 
+               \left\{
+                \begin{array}{ll}
+                   \nexists \quad x_{1} \in \mathbb{R} \\
+                 x_2=0 
+                \end{array}
+              \right.
+$
+\\ \\
+Για είσοδο συνάρτηση ράμπας κλίσης 0.4: 
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 m(x_{1},0)=0.1 
+                \end{array}
+              \right. \Rightarrow 
+               \left\{
+                \begin{array}{ll}
+                  \nexists \quad x_{1} \in \mathbb{R} \\
+                 x_2=0 
+                \end{array}
+              \right.
+$
+\\ \\
+Για είσοδο συνάρτηση ράμπας κλίσης 0.8: 
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                 x_{2}=0 \\
+                 m(x_{1},0)=0.2 
+                \end{array}
+              \right. \Rightarrow 
+               \left\{
+                \begin{array}{ll}
+                  x_{1} \in (0.1 ,+\infty) \\
+                 x_2=0 
+                \end{array}
+              \right.
+$
+\subsection{Ερώτημα ΙΙ}
+ Με διαίρεση των $(4)$ και $(3)$, έχουμε:
+\[ \frac{dx_{2}}{dx_{1}}= \frac{\ddot{r}+\dot{r}-4m(x_{1},x_{2})-x_{2}}{x_{2}} \quad (5) \]
+Το φασικό πορτραίτο της κάθε περίπτωσης προκύπτει από τη σχέση (5) με την επίλυση των παρακάτω διαφορικών εξισώσεων.
+\\ \\
+Για βηματική είσοδο: \[ \frac{dx_{2}}{dx_{1}}= -\frac{4m(x_{1},x_{2})+x_{2}}{x_{2}}  \]
+Για είσοδο συνάρτηση ράμπας κλίσης 1.2:  \[ \frac{dx_{2}}{dx_{1}}= \frac{1.2-4m(x_{1},x_{2})-x_{2}}{x_{2}}  \]
+Για είσοδο συνάρτηση ράμπας κλίσης 0.4:  \[ \frac{dx_{2}}{dx_{1}}= \frac{0.4-4m(x_{1},x_{2})-x_{2}}{x_{2}}  \]
+Για είσοδο συνάρτηση ράμπας κλίσης 0.8:  \[ \frac{dx_{2}}{dx_{1}}= \frac{0.8-4m(x_{1},x_{2})-x_{2}}{x_{2}}  \]
+Στην περίπτωση της βηματικής εισόδου στο μη γραμμικό σύστημα σφάλματος έχουμε τις παρακάτω χρονικές αποκρίσεις (Σχήμα 9 και 10), οι οποίες μετά από πεπερασμένο χρόνο καταλήγουν στην περιόχη των σημείων ισορροπίας, όπου πραγματοποιούν ταλάντωση  με εξαίρεση δύο περιπτώσεις, όπως φαίνεται στο σχήμα, όπου το σύστημα συγκλίνει ασυμπτωτικά σε κάποιο από τα σημεία ισορροπίας. Παρατηρούμε ότι μετά το πέρας ορισμένου χρόνου οι λύσεις $x_1$ "εγκλωβίζονται" στην περιοχή $(-0.2 , 0.2)$.
+\\ \\
+\includegraphics[width=\linewidth]{resp7.jpg}
+\centerline{Σχήμα 9:}
+\centerline{ Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο βηματική συνάρτηση (1)}
+\\ \\
+\includegraphics[width=\linewidth]{resp8.jpg}
+\centerline{Σχήμα 10:}
+\centerline{ Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο βηματική συνάρτηση (2)}
+\\ \\
+\includegraphics[width=\linewidth]{slope9.jpg}
+\centerline{Σχήμα 11:}
+\centerline{Φασικό Πορτραίτο Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο βηματική συνάρτηση}
+\\ \\
+Από το φασικό πορτραίτο βλέπουμε ότι το συστήμα έχει εναν οριακό κύκλο, στον οποίο οδηγούνται οι λύσεις που βρίσκονται έξω από αυτόν.
+\\ \\ \\
+Στην περίπτωση εισόδου ράμπας με κλίση 1.2 στο μη γραμμικό σύστημα σφάλματος έχουμε τις παρακάτω χρονικές αποκρίσεις (Σχήμα 12 και 13) από όπου παρατηρούμε ότι το σύστημα οδηγείται σε αστάθεια σε κάθε περίπτωση που εξατάσαμε, κάτι που θα εξηγηθεί στη συνέχεια.
+\\ \\
+\includegraphics[width=\linewidth]{resp10.jpg}
+\centerline{Σχήμα 12:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 1.2 (1)}
+\\ \\
+\includegraphics[width=\linewidth]{resp11.jpg}
+\centerline{Σχήμα 13:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 1.2 (2)}
+\\ \\
+\includegraphics[width=\linewidth]{slope12.jpg}
+\centerline{Σχήμα 14:}
+\centerline{Φασικό Πορτραίτο Μη Γραμμικού Συστήματος}
+\centerline{ με είσοδο συνάρτηση ράμπας κλίσης 1.2 }
+\\ \\
+Από το φασικό πορτραίτο του Σχήματος 14 γίνεται ξεκάθαρο ότι το σύστημα σφάλματος είναι ασταθές, ανεξαρτήτως αρχικής τιμής. 
+\\ \\ \\ \\
+Στην περίπτωση εισόδου ράμπας με κλίση 0.4 στο μη γραμμικό σύστημα σφάλματος έχουμε τις παρακάτω χρονικές αποκρίσεις (Σχήμα 15 και 16), οι οποίες μετά από πεπερασμένο χρόνο καταλήγουν στην περιόχη των σημείων ισορροπίας, όπου πραγματοποιούν ταλάντωση.
+\\ \\
+\includegraphics[width=\linewidth]{resp13.jpg}
+\centerline{Σχήμα 15:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 0.4 (1)}
+\\ \\
+\includegraphics[width=\linewidth]{resp14.jpg}
+\centerline{Σχήμα 16:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 0.4 (2)}
+\\ \\
+\includegraphics[width=\linewidth]{slope15.jpg}
+\centerline{Σχήμα 17:}
+\centerline{Φασικό Πορτραίτο Μη Γραμμικού Συστήματος}
+\centerline{ με είσοδο συνάρτηση ράμπας κλίσης 0.4 }
+\\ \\
+Από το φασικό πορτραίτο του Σχήματος 17 βλέπουμε ότι το συστήμα έχει εναν οριακό κύκλο, στον οποίο οδηγούνται οι λύσεις που βρίσκονται έξω από αυτόν. Κάτι τέτοιο ήταν αναμενόμενο κοιτώντας τις χρονικές αποκρίσεις για τις διάφορες αρχικές τιμές (ταλαντώσεις).
+\\ \\ \\
+Στην περίπτωση εισόδου συνάρτησης ράμπας με κλίση 0.8 στο μη γραμμικό σύστημα σφάλματος έχουμε τις παρακάτω χρονικές αποκρίσεις (Σχήμα 18 και 19), οι οποίες μετά από πεπερασμένο χρόνο καταλήγουν στην περιόχη των σημείων ισορροπίας, όπου συγκλίνουν ασυμπτωτικά σε κάποιο από τα σημεία ισορροπίας. Παρατηρούμε ότι μετά το πέρας ορισμένου χρόνου οι λύσεις $x_1$ "εγκλωβίζονται" στην περιοχή $(0.1 , +\infty)$.
+\\ \\
+\includegraphics[width=\linewidth]{resp16.jpg}
+\centerline{Σχήμα 18:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 0.8 (1)}
+\\ \\
+\includegraphics[width=\linewidth]{resp17.jpg}
+\centerline{Σχήμα 19:}
+\centerline{Χρονική Απόκριση Μη Γραμμικού Συστήματος}
+\centerline{με είσοδο συνάρτηση ράμπας κλίσης 0.8 (2)}
+\\ \\
+\includegraphics[width=\linewidth]{slope18.jpg}
+\centerline{Σχήμα 20:}
+\centerline{Φασικό Πορτραίτο Μη Γραμμικού Συστήματος}
+\centerline{ με είσοδο συνάρτηση ράμπας κλίσης 0.8 }
+\\ \\
+Από το φασικό πορτραίτο του Σχήματος 20 βλέπουμε ότι πράγματι όλες οι λύσεις ανεξάρτητα από τις αρχικές συνθήκες καταλήγουν σε κάποιο σημείο της ημιευθείας που περιέχει τα σημεία ισορροπίας και συγκλίνουν σε κάποιο από αυτά.
+\subsection{Ερώτημα ΙΙΙ}
+Για τη μη γραμμική συνάρτηση κέρδους έχουμε, \\ \\
+\includegraphics[width=\linewidth]{m_function.jpg}
+\centerline{Σχήμα 21:}
+\centerline{Περιοχές της Μη Γραμμικής Συνάρτησης $m(e,\dot{e})$ }
+\\ \\
+Επίσης, επιστρέφοντας στη διαφορική εξίσωση του σφάλματος για οποιαδήποτε είσοδο της μορφής $r(t)=Vtu(t)$, εφόσον σε κάθε περιοχή κερδών $m(e,\dot{e})=m$ σταθερή, έχουμε
+\[ \ddot{e}+\dot{e}=V-4m \Rightarrow \]
+\[ e(t)=\left[V-4m-\dot{e}(0)\right]e^{-t}+[e(0)-V+4m+\dot{e}(0)]+(V-4m)t \]
+και
+\[ \dot{e}(t)= -[V-4m-\dot{e}(0)]e^{-t}+(V-4m) \]
+\[ \ddot{e}(t)= [V-4m-\dot{e}(0)]e^{-t} \]
+\\
+Επομένως διακρίνουμε τις εξής περιπτώσεις (με τους συμβολισμούς $\uparrowtail$ και $\downarrowtail$ συμβολίζουμε τη γνησίως αύξουσα και γνησίως φθίνουσα συνάρτηση, αντίστοιχα).
+\\
+\begin{easylist}[itemize]
+& \textbf{\ r(t)=u(t)} \\
+Σε αυτή την περίπτωση θέτουμε $V=0$, αφού εμφανίζονται μόνο οι παράγωγοι της εισόδου $\dot{r}(t)=0=Vu(t)$ , $\ddot{r}(t)=0$. Παρατηρώντας το φασικό πορτραίτο και την παραπάνω ανάλυση για είσοδο βηματική συνάρτηση έχουμε,
+\[ e(t)=-\left[4m+\dot{e}(0)\right]e^{-t}+[e(0)+4m+\dot{e}(0)]-4mt \]
+και
+\[ \dot{e}(t)= [4m+\dot{e}(0)]e^{-t}-4m \]
+\[ \ddot{e}(t)= -[4m+\dot{e}(0)]e^{-t} \]
+Από τα παραπάνω βλέπουμε ότι:
+&& Στην περιοχή $\{1\}$, όπου $m=0.2$
+\[\dot{e}(t)>0 \Rightarrow [0.8+\dot{e}(0)]e^{-t}>0.8>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=-[0.8+\dot{e}(0)]e^{-t} < 0\Rightarrow \dot{e} \downarrowtail \]
+&& Στην περιοχή $\{2\}$, όπου $m=0$
+\[\dot{e}(t)>0 \Rightarrow \dot{e}(0)e^{-t} > 0, \quad e \uparrowtail \]
+\[\ddot{e}(t)=-\dot{e}(0)e^{-t} < 0\Rightarrow \dot{e} \downarrowtail\]
+&& Στην περιοχή $\{3\}$, όπου $m=-0.2$
+\[\dot{e}(t)>0 \Rightarrow \dot{e}(t)= [-0.8+\dot{e}(0)]e^{-t}+0.8>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[0.8-\dot{e}(0)]e^{-t}\]
+&&& Όταν $\dot{e}(0)>0.8$ 
+\[\ddot{e}(t)<0 \Rightarrow \dot{e}(t) \downarrowtail\]
+&&& Όταν $\dot{e}(0)<0.8$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e}(t) \uparrowtail\]
+&& Στην περιοχή $\{4\}$, όπου $m=0.2$
+\[\dot{e}(t)<0 \Rightarrow [0.8+\dot{e}(0)]e^{-t}<0.8 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=-[0.8+\dot{e}(0)]e^{-t}\]
+&&& Όταν $\dot{e}(0)>-0.8$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<-0.8$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{5\}$, όπου $m=0$
+\[\dot{e}(t)<0 \Rightarrow \dot{e}(0)e^{-t} < 0, \quad e \downarrowtail \]
+\[\ddot{e}(t)=-\dot{e}(0)e^{-t} > 0\Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{6\}$, όπου $m=-0.2$
+\[\dot{e}(t)<0 \Rightarrow [0.8-\dot{e}(0)]e^{-t}>0.8>0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=[0.8-\dot{e}(0)]e^{-t} >0 \Rightarrow \dot{e} \uparrowtail\]
+\end{easylist}
+\begin{easylist}[itemize]
+& \textbf{\ r(t)=1.2tu(t)} \\
+Στην περίπτωση εισόδου συνάρτησης ράμπας με κλίση 1.2, κοιτώντας το φασικό πορτραίτο του Σχήματος 14 ή τις αντίστοιχες χρονικές αποκρίσεις, παρατηρούμε ότι το σύστημα σφάλματος είναι ασταθές. Αυτό δικαιολογείται από τη λύση της διαφορικής εξίσωσης του σφάλματος,
+\[ \ddot{e}+\dot{e}=1.2-4m \Rightarrow \]
+\[ e(t)=\left[1.2-4m-\dot{e}(0)\right]e^{-t}+[e(0)-1.2+4m+\dot{e}(0)]+(1.2-4m)t \]
+και
+\[ \dot{e}(t)= -[1.2-4m-\dot{e}(0)]e^{-t}+(1.2-4m) \]
+\[ \ddot{e}(t)= [1.2-4m-\dot{e}(0)]e^{-t} \]
+Από τα παραπάνω βλέπουμε ότι: 
+&& Στην περιοχή $\{1\}$, όπου $m=0.2$
+\[\dot{e}(t)>0 \Rightarrow [0.4-\dot{e}(0)]e^{-t}<0.4 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[0.4-\dot{e}(0)]e^{-t} \]
+&&& Όταν $\dot{e}(0)>0.4$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<0.4$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{2\}$, όπου $m=0$
+\[\dot{e}(t)>0 \Rightarrow [1.2-\dot{e}(0)]e^{-t}<1.2 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[1.2-\dot{e}(0)]e^{-t} \]
+&&& Όταν $\dot{e}(0)>1.2$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<1.2$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{3\}$, όπου $m=-0.2$
+\[\dot{e}(t)>0 \Rightarrow [2-\dot{e}(0)]e^{-t}<2 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[2-\dot{e}(0)]e^{-t}\]
+&&& Όταν $\dot{e}(0)>2$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<2$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{4\}$, όπου $m=0.2$
+\[\dot{e}(t)<0 \Rightarrow [0.4-\dot{e}(0)]e^{-t}>0.4>0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=[0.4-\dot{e}(0)]e^{-t}>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{5\}$, όπου $m=0$
+\[\dot{e}(t)<0 \Rightarrow [1.2-\dot{e}(0)]e^{-t}>1.2>0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=[1.2-\dot{e}(0)]e^{-t} >0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{6\}$, όπου $m=-0.2$
+\[\dot{e}(t)<0 \Rightarrow [2-\dot{e}(0)]e^{-t}>2>0 , \quad e \downarrowtail\]
+\[\ddot{e}(t)=[2-\dot{e}(0)]e^{-t} >0 \Rightarrow \dot{e} \uparrowtail \]
+\\
+\end{easylist}
+\begin{easylist}[itemize]
+& \textbf{\ r(t)=0.4tu(t)} \\
+Παρατηρώντας το φασικό πορτραίτο και την παραπάνω ανάλυση για είσοδο συνάρτηση ράμπα με κλίση 0.4 έχουμε,
+\[ e(t)=\left[0.4-4m-\dot{e}(0)\right]e^{-t}+[e(0)-0.4+4m+\dot{e}(0)]+(0.4-4m)t \]
+και
+\[ \dot{e}(t)= -[0.4-4m-\dot{e}(0)]e^{-t}+(0.4-4m) \]
+\[ \ddot{e}(t)= [0.4-4m-\dot{e}(0)]e^{-t} \]
+Από τα παραπάνω βλέπουμε ότι: 
+&& Στην περιοχή $\{1\}$, όπου $m=0.2$
+\[\dot{e}(t)>0 \Rightarrow [0.4+\dot{e}(0)]e^{-t}>0.4>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=-[0.4+\dot{e}(0)]e^{-t} < 0\Rightarrow \dot{e} \downarrowtail \]
+&& Στην περιοχή $\{2\}$, όπου $m=0$
+\[\dot{e}(t)>0 \Rightarrow [0.4-\dot{e}(0)]e^{-t}<0.4  , \quad e \uparrowtail \]
+\[\ddot{e}(t)=[0.4-\dot{e}(0)]e^{-t} \]
+&&& Όταν $\dot{e}(0)>0.4$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<0.4$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{3\}$, όπου $m=-0.2$
+\[ \dot{e}(t)>0 \Rightarrow -[1.2-\dot{e}(0)]e^{-t}+1.2>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[1.2-\dot{e}(0)]e^{-t}\]
+&&& Όταν $\dot{e}(0)>1.2$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<1.2$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{4\}$, όπου $m=0.2$
+\[\dot{e}(t)<0 \Rightarrow [0.4+\dot{e}(0)]e^{-t}<0.4 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=-[0.4+\dot{e}(0)]e^{-t} \]
+&&& Όταν $\dot{e}(0)>-0.4$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<-0.4$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{5\}$, όπου $m=0$
+\[\dot{e}(t)<0 \Rightarrow [0.4-\dot{e}(0)]e^{-t}>0.4>0  , \quad e \downarrowtail \]
+\[\ddot{e}(t)=[0.4-\dot{e}(0)]e^{-t}>0 \Rightarrow \dot{e} \uparrowtail \]
+&& Στην περιοχή $\{6\}$, όπου $m=-0.2$
+\[ \dot{e}(t)<0 \Rightarrow [1.2-\dot{e}(0)]e^{-t}>1.2>0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=[1.2-\dot{e}(0)]e^{-t}>0 \Rightarrow \dot{e} \uparrowtail \]
+\end{easylist}
+\begin{easylist}[itemize]
+& \textbf{\ r(t)=0.8tu(t)} \\
+Παρατηρώντας το φασικό πορτραίτο και την παραπάνω ανάλυση για είσοδο συνάρτηση ράμπα με κλίση 0.8 έχουμε,
+\[ e(t)=\left[0.8-4m-\dot{e}(0)\right]e^{-t}+[e(0)-0.8+4m+\dot{e}(0)]+(0.8-4m)t \]
+και
+\[ \dot{e}(t)= -[0.8-4m-\dot{e}(0)]e^{-t}+(0.8-4m) \]
+\[ \ddot{e}(t)= [0.8-4m-\dot{e}(0)]e^{-t} \]
+Από τα παραπάνω βλέπουμε ότι: 
+&& Στην περιοχή $\{1\}$, όπου $m=0.2$
+\[\dot{e}(t)>0 \Rightarrow \dot{e}(0)e^{-t}>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=-\dot{e}(0)e^{-t} < 0\Rightarrow \dot{e} \downarrowtail \]
+&& Στην περιοχή $\{2\}$, όπου $m=0$
+\[\dot{e}(t)>0 \Rightarrow [0.8-\dot{e}(0)]e^{-t}<0.8  , \quad e \uparrowtail \]
+\[\ddot{e}(t)=[0.8-\dot{e}(0)]e^{-t} \]
+&&& Όταν $\dot{e}(0)>0.8$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<0.8$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{3\}$, όπου $m=-0.2$
+\[ \dot{e}(t)>0 \Rightarrow -[1.6-\dot{e}(0)]e^{-t}+1.6>0 , \quad e \uparrowtail  \]
+\[\ddot{e}(t)=[1.6-\dot{e}(0)]e^{-t}\]
+&&& Όταν $\dot{e}(0)>1.6$
+\[\ddot{e}(t)<0 \Rightarrow \dot{e} \downarrowtail\]
+&&& Όταν $\dot{e}(0)<1.6$
+\[\ddot{e}(t)>0 \Rightarrow \dot{e} \uparrowtail\]
+&& Στην περιοχή $\{4\}$, όπου $m=0.2$
+\[\dot{e}(t)<0 \Rightarrow \dot{e}(0)e^{-t}<0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=-\dot{e}(0)e^{-t} > 0\Rightarrow \dot{e} \uparrowtail \]
+&& Στην περιοχή $\{5\}$, όπου $m=0$
+\[\dot{e}(t)<0 \Rightarrow [0.8-\dot{e}(0)]e^{-t}>0.8>0 , \quad e \downarrowtail \]
+\[\ddot{e}(t)=[0.8-\dot{e}(0)]e^{-t}>0 \Rightarrow \dot{e} \uparrowtail \]
+&& Στην περιοχή $\{6\}$, όπου $m=-0.2$
+\[ \dot{e}(t)<0 \Rightarrow [1.6-\dot{e}(0)]e^{-t}>1.6>0 , \quad e \downarrowtail  \]
+\[\ddot{e}(t)=[1.6-\dot{e}(0)]e^{-t}>0 \Rightarrow \dot{e} \uparrowtail \]
+\\
+Τα παραπάνω συμπεράσματα αιτιολογούν την πορεία που ακολουθούν όλες οι πιθανές περιπτώσεις αρχικών τιμών.
+\end{easylist}
+\newpage
+\part{Τμήμα B}
+\section{Μέρος A}
+Δίνεται το δυναμικό σύστημα ρομποτικού βραχίονα
+\[h\ddot{\theta}+b\dot{\theta}+a cos(\theta)=u \Rightarrow\] 
+\[ \ddot{\theta}=-\frac{b}{h}\dot{\theta}-\frac{a}{h}cos(\theta)+\frac{1}{h}u \quad (1.1) \]
+με
+\[ h=J+m_2l^2 \qquad a=(m_1l_c+m_2l)g \]
+Για τις παραμέτρους του συστήματος δεν έχουμε πλήρη γνώση. Συγκεκριμένα, γνωρίζουμε τα παρακάτω:
+\[ m_1 =2kg \qquad l=0.5m \qquad g=9.8 m/s^2\]
+\[ 0.1<J<0.5 \qquad 0.05<l_c<0.45 \qquad 0.001<b<0.01 \qquad 0<m_2<2\]
+ενώ δεν γνωρίζουμε τις πραγματικές τους τιμές για την κατασκευή του ελεγκτή
+\[ J=0.15 \qquad l_c=0.3 \qquad b=0.009 \qquad m_2=1.4\]
+άρα
+\[ h=0.5 \qquad \qquad a=12.74 \]
+Για την κατασκευή του ελεγκτή, ωστόσο, θα χρησιμοποιήσουμε τις εκτιμήσεις των παραμέτρων που παρουσιάζουν αβεβαιότητες:
+\[ \hat{J}=0.12 \qquad \hat{l_c}=0.44 \qquad \hat{b}=0.005 \qquad \hat{m_2}=0.24\]
+άρα
+\[ \hat{h}=0.18 \qquad \qquad \hat{a}=9.8 \]
+Από τα παραπάνω έχουμε
+\[ 
+\left \{
+\begin{array}{ll}
+0.05<l_c<0.45 \\
+0<m_2<2 
+\end {array}
+\right. \Rightarrow
+\left \{
+\begin{array}{ll}
+0.1<m_1l_c<0.9 \\
+0<m_2l<1 
+\end {array}
+\right. \xRightarrow{(+)}\]
+\[
+0.1<m_1l_c+m_2l<1.9 \Rightarrow 
+0.98<(m_1l_c+m_2l)g<18.62 \Rightarrow
+\]
+\[0.98<a<18.62 \Rightarrow 0.98-\hat{a}<a-\hat{a}<18.62-\hat{a} \Rightarrow\]
+\[ -8.82<a-\hat{a}<8.82 \Rightarrow  \]
+\[ \left|a-\hat{a} \right| <8.82 =\epsilon_1 \]
+και
+\\
+\[ 
+\left \{
+\begin{array}{ll}
+0.1<J<0.5 \\
+0<m_2<2 
+\end {array}
+\right. \Rightarrow
+\left \{
+\begin{array}{ll}
+0.1<J<0.5 \\
+0<m_2l^2<0.5 
+\end {array}
+\right. \xRightarrow{(+)}\]
+\[
+0.1<J+m_2l^2<1 \Rightarrow 
+0.1<h<1 \Rightarrow
+1<\frac{1}{h}<10 \Rightarrow
+\]
+\[1<\beta<10 \Rightarrow \frac{1}{\hat{\beta}}<\frac{\beta}{\hat{\beta}}<\frac{10}{\hat{\beta}} \Rightarrow \frac{1}{\hat{\beta}}-1<\frac{\beta}{\hat{\beta}}-1<\frac{10}{\hat{\beta}}-1 \Rightarrow  \]
+\[ -0.82<\frac{\beta}{\hat{\beta}}-1<0.8 \Rightarrow -0.82<\frac{\beta}{\hat{\beta}}-1<0.82 \Rightarrow\]
+\[ \left| \frac{\beta}{\hat{\beta}}-1 \right| <0.82 = \epsilon_2 \]
+και
+\\
+\[ 0.001<b<0.01 \Rightarrow 0.001-\hat{b}<b-\hat{b}<0.010-\hat{b} \Rightarrow \]
+\[  -0.004<b-\hat{b}<0.005 \Rightarrow -0.005<b-\hat{b}<0.005 \Rightarrow \]
+\[ \left| b-\hat{b} \right| <0.005 =\epsilon_3 \]
+Η τάξη του συστήματος είναι 2, επομένως και το πλήθος των μεταβλητών κατάστασης θα είναι 2. Επιλέγουμε
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                  x_{1}=\theta \\
+                  x_{2}=\dot{\theta}             
+                \end{array}
+              \right.$
+              \quad άρα \quad
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=\dot{ \theta}=x_{2} \\
+                  \dot{ x_{2} } = \ddot{ \theta }= -\frac{b}{h}\ x_2 - \frac{a}{h} cos(x_1)+\frac{1}{h}u
+
+                \end{array}
+              \right. 
+$
+\\ \\
+Ωστόσο, επειδή σκοπός μας είναι να παρακολουθήσουμε  μια επιθυμητή είσοδο $\theta_d$, θεωρούμε το σύστημα σφάλματος
+\\ \\
+$ \left\{
+                \begin{array}{ll}
+                  e_{1}=\theta_d-\theta \\
+                  e_{2}=\dot{\theta_d}-\dot{\theta}             
+                \end{array}
+              \right.$
+              \quad άρα \quad
+$ \left\{
+                \begin{array}{ll}
+                  \dot{e_{1}}=\dot{\theta_d}-\dot{\theta}=e_{2} \\
+                  \dot{ e_{2} } = \ddot{\theta_d}-\ddot{\theta}= \ddot{\theta_d}+\frac{b}{h}\ x_2 + \frac{a}{h} cos(x_1)-\frac{1}{h}u
+
+                \end{array}
+              \right. 
+$
+\\ \\
+Επομένως το σύστημα μπορεί να γραφτεί στη μορφή
+\[ \dot{e}=Ae+B \beta(x) [u-a(x)]\]
+με
+\[  a(x)= a cos(x_1)+ bx_2+h
+ \ddot{\theta_d} \qquad \beta(x)=\beta=\frac{1}{h} \]
+και
+ \[ \dot{e} = 
+\begin{bmatrix}
+0 & & 1 \\
+0 & & 0
+\end{bmatrix}
+e+
+\frac{1}{h}
+\begin{bmatrix}
+    0 \\
+    -1
+\end{bmatrix}
+\left[u-acos(x_1)- bx_2-h \ddot{\theta_d}  \right]
+\]
+όπου
+\[e=
+\begin{bmatrix}
+   e_{1}  & e_{2}
+\end{bmatrix}^{T}
+\qquad
+\dot{e}=
+\begin{bmatrix}
+   \dot{e_{1}}  & \dot{e_{2}}
+\end{bmatrix}^{T}
+\qquad\]
+Για λόγους αναλύσης θέτουμε
+\[ u=\hat{a}(x)+\hat{\beta}^{-1}(x)(v+\delta v) \]
+Επομένως
+\[  \dot{e}=Ae+B \beta \left[\hat{a}cos(x_1)+\hat{ b}x_2+\hat{h} \ddot{\theta_d} +\hat{\beta}^{-1}(v+\delta v) -acos(x_1)- bx_2-h \ddot{\theta_d}  \right] \Rightarrow \]
+\[  \dot{e}=Ae+B \beta [(\hat{a}-a)cos(x_1)+(\hat{b}-b)x_{2}+(\hat{h}-h)
+ \ddot{\theta_d}+\hat{\beta}^{-1}(v+ \delta v) ] \Rightarrow \]
+\[  \dot{e}=Ae+B \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\delta v)+B(v+\delta v)+B \beta \left( \hat{a} -a \right)cos(x_{1})+B \beta \left( \hat{b}-b \right) x_{2}+B \beta h\left( \frac{\hat{h}}{h} -1 \right) \ddot{\theta_d} \Rightarrow \]
+\[  \dot{e}=Ae+Bv+B\delta v+B \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\delta v)+B \beta \left( \hat{a} -a \right)cos(x_{1})+B \beta \left( \hat{b}-b \right) x_{2}+B \left( \frac{\hat{h}}{h} -1 \right) \ddot{\theta_d} \]
+Ορίζουμε
+\[ v= F^Te \quad \text{ με } \quad F= \begin{bmatrix}
+k_1 & k_2
+\end{bmatrix}^T \qquad \text{και} \qquad \tilde{A}=A+BF^T \]
+άρα τελικά
+\[ \dot{e}=\tilde{A}e +B\delta v +B \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\delta v+\ddot{\theta_d})+B \beta \left( \hat{a} -a \right)cos(x_{1})+B \beta \left( \hat{b}-b \right) x_{2}  \]
+Στη συνέχεια θεωρούμε τη θετικά ορισμένη και μη φραγμένη ακτινικά υποψήφια συνάρτηση $Lyapunov$
+\[ V= e^TPe \succ 0\]
+με χρονική παράγωγο
+\[ \dot{V} = \dot{e}^T Pe + e^TP \dot{e} \Rightarrow \]
+$ \dot{V} = \left[ e^T \tilde{A}^T +(B \delta v)^T + \left( \frac{\beta}{\hat{\beta}} -1 \right) [B( v+ \delta v+\ddot{\theta_d})]^T +B^T \beta \left( \hat{a} -a \right)cos(x_{1})+B^T \beta \left( \hat{b}-b \right) x_{2} \right] Pe $
+\[ + e^T P \left[ \tilde{A}e +B\delta v +B \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\delta v+\ddot{\theta_d})+B \beta \left( \hat{a} -a \right)cos(x_{1})+B \beta \left( \hat{b}-b \right) x_{2} \right] \Rightarrow \]
+\[ \dot{V}= e^T(\tilde{A}^T P + P\tilde{A})e+2e^T PB \left[ \delta v + \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\delta v+\ddot{\theta_d})+ \beta \left( \hat{a} -a \right)cos(x_{1})+ \beta \left( \hat{b}-b \right) x_{2} \right] \Rightarrow \]
+\[ \dot{V}= -e^TQe+2e^T PB\delta v+2e^T PB \left[  \left( \frac{\beta}{\hat{\beta}} -1 \right)(v+\ddot{\theta_d}+\delta v)+ \right. \]
+\[+ \left. \hat{\beta}\left( \frac{\beta}{\hat{\beta}} -1 \right) \left[ \left( \hat{a} -a \right)cos(x_{1})+  ( \hat{b}-b ) x_{2}\right] + \hat{\beta} \left[ \left( \hat{a} -a \right)cos(x_{1})+ ( \hat{b}-b ) x_{2}\right] \right]  \]
+Άρα
+\[ \dot{V} \leq -e^TQe +2e^T P B \delta v  +2 \left|e^T P B \right| \left[ \epsilon_2 \left( |v+\ddot{\theta_d}|+| \delta v| \right)+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| ) \right] \]
+όπου
+\[ \delta v=- \left[ \epsilon_2 \left( |v+\ddot{\theta_d}|+| d| \right)+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| ) \right] sgn \left( e^T P B \right)  \]
+για κάποιο $d$ τέτοιο ώστε
+\[ | \delta v | \leq |d| \Rightarrow \]
+\[ \epsilon_2 \left( |v+\ddot{\theta_d}|+| d| \right)+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| ) \leq |d|  \Rightarrow \]
+\[ \frac{\epsilon_2 |v+\ddot{\theta_d}|+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| )}{1-\epsilon_2} \leq |d| \]
+Επιλέγουμε την ελάχιστη τιμή του $|d|$
+\[|d|=  \frac{\epsilon_2 |v+\ddot{\theta_d}|+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| )}{1-\epsilon_2} \]
+επομένως
+\[ \delta v=- \left[  \frac{\epsilon_2 |k_1e_1+k_2e_2+\ddot{\theta_d}|+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| )}{1-\epsilon_2}  \right] sgn \left( e^T P B \right) \]
+οπότε 
+\[ \dot{V} \leq -e^TQe \prec 0 \]
+δηλαδή η $\dot{V}$ να είναι αρνητικά ορισμένη.
+\\ \\
+Για αυτό το λόγο επιλέγουμε
+\[ u_{con}=\hat{a}cos(x_{1})+ \hat{b}x_{2}+\hat{h}\ddot{\theta_d}+\hat{h}( k_1e_{1}+k_2e_{2} ) \]
+\[-\hat{h}\left[  \frac{\epsilon_2 |k_1e_1+k_2e_2+\ddot{\theta_d}|+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| )}{1-\epsilon_2}  \right] sgn \left( e^T P B \right) \Rightarrow \]
+\\
+\[  u_{con}=\hat{a}cos(x_{1})+ \hat{b}x_{2}-\hat{h}( k_1x_{1}+k_2x_{2} )+\hat{h}(\ddot{\theta_d}+ k_1\theta_d+k_2\dot{\theta_d} ) .\]
+\[-\hat{h} \left[  \frac{\epsilon_2 |k_1(\theta_d-x_1)+  k_2(\dot{\theta_d}-x_2)+\ddot{\theta_d}|+\hat{\beta}(\epsilon_2+1)(\epsilon_1+\epsilon_3|x_2| )}{1-\epsilon_2}  \right] sgn \left( \begin{bmatrix}
+\theta_d-x_1 \quad & \dot{\theta_d}-x_2
+\end{bmatrix} P B \right)  \quad (1.2) \]
+
+Ωστόσο, από την προσομοίωση, βλέπουμε ότι ο ελεγκτής στο μεταβατικό φαινόμενο λαμβάνει πολύ υψηλές τιμές, που ξεπερνούν τα πλαίσια του λογικού. Θέτουμε λοιπόν σαν όριο την τιμή $R=50$, ώστε οι τιμές της ροπής που προσδίδει ο ελεγκτής να είναι ρεαλιστικές. Έτσι τελικά ορίζουμε
+\[ u=
+\left\{
+                \begin{array}{ll}
+                   R, \quad |u| \geq R \\ \\
+                   u_{con} \quad |u| < R
+                \end{array}
+              \right.\]
+Οι πρώτοι δύο όροι της $(1.2)$ αποσκοπούν στο να ελαττώσουμε την επίδραση της μη γραμμικότητας και των αγνώστων παραμέτρων του συστήματος. Ο τρίτος όρος μας επιτρέπει να καθορίσουμε τις ιδιοτιμές του, δηλαδή να το κάνουμε ευσταθές ή περισσότερο εύσταθες και γενικότερα να ρυθμίσουμε χαρακτηριστικά του όπως ο χρόνος αποκατάστασης ή η εμφάνιση υπερίψωσης. Με τον τέταρτο όρο εισάγουμε ένα σήμα ελέγχου στο σύστημα ώστε να μπορέσουμε να παρακολουθήσουμε την είσοδο που επιθυμούμε αρκεί να είναι φραγμένη και αρκούντως παραγωγίσιμη. Τέλος, με τον πέμπτο όρο επιδιώκουμε να αντιμετωπίσουμε τις αβεβαιότητες που υπάρχουν στις εκτιμήσεις των παραμέτρων, ώστε το σφάλμα παρακολούθησης να συγκλίνει στο μηδέν και η έξοδος του συστήματος να παρακολουθεί με ικανοποιητική ακρίβεια την είσοδο.
+\\ \\ \\
+Αναφορικά με τον τρίτο όρο του ελεγκτή $(1.2)$ οι θετικές σταθερές $k_1,k_2$ θα πρέπει να είναι κατάλληλα επιλεγμένες ώστε να μην εμφανίζεται υπερίψωση $(\zeta >1)$ και ο χρόνος αποκατάστασης να είναι (δεδομένου ότι το σύστημα μετά την αφαίρεση της μη γραμμικότητας, εφόσον $ζ>1$, έχει πλέον δύο πραγματικούς πόλλους $\sigma_1,\sigma_2$) 
+\[t_s=\frac{4}{min(-\sigma_1,-\sigma_2)}=0.4 sec \Rightarrow {min(-\sigma_1,-\sigma_2)} = 10 \]
+Επομένως το χαρακτηριστικό πολυώνυμο του συστήματος θα πρέπει να είναι το εξής:
+\[D(s)= [s+min( -\sigma_1 , -\sigma_2)] [s+ max( -\sigma_1, -\sigma_2)] \Rightarrow \]
+\[D(s)= (s+10) [s+ (10+c)] \quad , \quad c \geq 0 \]
+Άρα
+\[D(s)= s^2+(20+c)s+(100+10c) \quad , \quad c \geq 0 \]
+όμως γενικά
+\[D(s)=s^2+2 \zeta \omega_n s +\omega_n ^2\]
+Επομένως
+\[ \omega_n= \sqrt{100+10c} \qquad \zeta = \frac{20+c}{2 \sqrt{100+10c}} \]
+Και τελικά επειδή $c \geq 0$ έχουμε:
+\[ c=20(\zeta^2-1+\zeta\sqrt{\zeta^2-1}) \]
+Με τον ελεγκτή μετατοπίζουμε τις ιδιοτιμές του συστήματος αλλάζοντας τον πίνακα του συστήματος A ως εξής:
+\[ \tilde{A}=A+BF^T=
+\begin{bmatrix}
+0 && 1 \\
+0 && 0 
+\end{bmatrix} + 
+\begin{bmatrix}
+0 \\
+-1
+\end{bmatrix} 
+\begin{bmatrix}
+k_1 & k_2
+\end{bmatrix}
+\Rightarrow
+\]
+\[ \tilde{A}= 
+\begin{bmatrix}
+0 & & 1 \\
+-k_1 & & -k_2
+\end{bmatrix}
+\]
+Το χαρακτηριστικό πολυώνυμο του γραμμικού τμήματος του νέου συστήματος θα είναι:
+\[ D(s)=det(sI-\tilde{A})=s^2+k_2s+k_1\]
+και
+\[D(s)= s^2+(20+c)s+(100+10c) \quad , c \geq 0 \]
+από όπου προκύπτουν οι σχέσεις:
+\[ k_1=100+10c \qquad k_2=20+c\]
+Έτσι τελικά έχουμε:
+\[ k_1=100+200(\zeta^2-1+\zeta\sqrt{\zeta^2-1}) \qquad k_2=20(\zeta^2+\zeta\sqrt{\zeta^2-1})\]
+Αρκεί να επιλέξουμε μια τιμή για το $\zeta \geq 1$ (πραγματικοί πόλοι) ώστε να μην έχουμε υπερίψωση. Επίσης, επειδή ο κυρίαρχος πόλος (αυτός που βρίσκεται πιο κοντά στο φανταστικό άξονα) του συστήματος είναι ο $\sigma=10$, ο χρόνος αποκατάστασης θα είναι ο επιθυμητός. Επιλέγουμε $\zeta=1$ κι επομένως $k_1=100$, $k_2=20$. Από τα αποτελέσματα γίνεται εμφανές ότι αν και δεν υπάρχει υπερίψωση ο χρόνος αποκατάστασης δεν είναι ο επιθυμητός.
+\\ \\
+Αναφορικά με τον τέταρτο όρο του ελεγκτή (1.2), για να υπολογίσουμε το συμμετρικό και θετικά ορισμένο πίνακα $P, ( P=P^T \succ 0 )$ θα χρειαστεί να επιλύσουμε την εξίσωση $Lyapunov$,
+\[ \tilde{A}^TP+P\tilde{A}=-Q \]
+όπου $Q$, συμμετρικός και θετικά ορισμένος πίνακας $( Q=Q^T \succ 0 )$. Στη συγκεκριμένη περίπτωση επιλέχθηκε, μετά από δοκιμές, ως $Q=\begin{bmatrix}
+20 & & 0 \\
+0 & & 0.06
+\end{bmatrix}$
+\\ \\
+Τέλος, για το φασικό πορτραίτο του σφάλματος επιστρέφουμε στο σύστημα του σφάλματος
+\[
+\left\{
+                \begin{array}{ll}
+                  e_{1}=\theta_d-\theta \\
+                  \\
+                  e_{2}=\dot{\theta_d}-\dot{\theta}             
+                \end{array}
+              \right.\]
+Μετά από διαίρεση των δύο τελευταίων σχέσεων καταλήγουμε σε μια διαφορική εξίσωση της μορφής
+\[ \frac{de_1}{de_2} = f(e_1,e_2,t) \]
+η επίλυση της οποίας δίνει, για τις διάφορες αρχικές τιμές, το φασικό πορτραίτο του συστήματος σφάλματος.
+\\ \\
+Οι χρονικές αποκρίσεις για τη θέση και την ταχύτητα, τα σφάλματα θέσης και ταχύτητας καθώς και το φασικό πορτραίτο σφάλματος  του συστήματος  με εισόδους προς παρακολούθηση $θ_d(t)=0$, $θ_d(t)=\frac{\pi}{2}cos(\pi t)$ , $θ_d(t)=\frac{\pi}{2}cos(2 \pi t) $ για 10 δευτερόλεπτα με συχνότητα δειγματοληψίας $100kHz$ φαίνονται στα παρακάτω Σχήματα, αντίστοιχα.
+\\ \\
+\includegraphics[width=\linewidth]{Acon1.jpg}
+\centerline{Σχήμα 1.1: Χρονική Απόκριση Ελεγκτή - Για είσοδο $\theta_d(t)=0$}
+\\ \\
+\includegraphics[width=\linewidth]{Ap1.jpg}
+\centerline{Σχήμα 1.2: Απόκριση Συστήματος - Θέση για είσοδο $\theta_d(t)=0$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av1.jpg}
+\centerline{Σχήμα 1.3: Απόκριση Συστήματος - Ταχύτητα για είσοδο $\theta_d(t)=0$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_error1.jpg}
+\centerline{Σχήμα 1.4: Σφάλμα Θέσης Συστήματος για είσοδο $\theta_d(t)=0$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av_error1.jpg}
+\centerline{Σχήμα 1.5: Σφάλμα Ταχύτητας Συστήματος για είσοδο $\theta_d(t)=0$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_por1.jpg}
+\centerline{Σχήμα 1.6: Φασικό Πορτραίτο Συστήματος Σφάλματος για είσοδο $\theta_d(t)=0$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Acon2.jpg}
+\centerline{Σχήμα 1.7: Χρονική Απόκριση Ελεγκτή - Για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\
+\includegraphics[width=\linewidth]{Ap2.jpg}
+\centerline{Σχήμα 1.8: Απόκριση Συστήματος - Θέση για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av2.jpg}
+\centerline{Σχήμα 1.9: Απόκριση Συστήματος - Ταχύτητα για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_error2.jpg}
+\centerline{Σχήμα 1.10: Σφάλμα Θέσης Συστήματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av_error2.jpg}
+\centerline{Σχήμα 1.11: Σφάλμα Ταχύτητας Συστήματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_por2.jpg}
+\centerline{Σχήμα 1.12: Φασικό Πορτραίτο Συστήματος Σφάλματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Acon3.jpg}
+\centerline{Σχήμα 1.13: Χρονική Απόκριση Ελεγκτή - Για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2\pi t)$}
+\\ \\
+\includegraphics[width=\linewidth]{Ap3.jpg}
+\centerline{Σχήμα 1.14: Απόκριση Συστήματος - Θέση για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2 \pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av3.jpg}
+\centerline{Σχήμα 1.15: Απόκριση Συστήματος - Ταχύτητα για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2 \pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_error3.jpg}
+\centerline{Σχήμα 1.16: Σφάλμα Θέσης Συστήματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2 \pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Av_error3.jpg}
+\centerline{Σχήμα 1.17: Σφάλμα Ταχύτητας Συστήματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2 \pi t)$}
+\\ \\ \\
+\includegraphics[width=\linewidth]{Ap_por3.jpg}
+\centerline{Σχήμα 1.18: Φασικό Πορτραίτο Συστήματος Σφάλματος για είσοδο $\theta_d(t)=\frac{\pi}{2}cos(2 \pi t)$}
+\\ \\ \\
+Το σφάλμα θέσης είναι στη χειρότερη περίπτωση γύρω στο $1.5\cdot 10^{-3}$ ενώ το σφάλμα ταχύτητας γύρω στο $2.5\cdot 10^{-3}$. Όπως φαίνεται από τις γραφικές παραστάσεις των σφαλμάτων, όσο πιο υψηλή είναι η συχνότητα της εισόδου προς παρακολούθηση τόσο μεγαλύτερα σφάλματα εμφανίζονται.
+\\ \\
+Αν παραλείψουμε τον όρο που αντιμετωπίζει τις αβεβαιότητες $\delta v$ από τον ελεγκτή, τότε βλέπουμε πολύ μεγαλύτερα σφάλματα.
+\\ \\
+Τέλος, ο ρόλος της συνάρτησης $sgn$ όπως δίνεται από την παρακάτω σχέση
+\[ sgn(x) =
+\left \{
+\begin{array}{ll}
+\frac{x}{|x|} , |x| \geq 0.001 \\ \\
+\frac{x}{0.001} , |x| < 0.001
+\end {array}
+\right.\]
+είναι καταλυτικός για την ομαλότητα των αποκρίσεων και την αποφυγή έντονων διαταραχών (αποφυγή φαινομένου chattering). Η τιμή $0.001$ επιλέχθηκε μετά από δοκιμές καθώς για μεγάλες τιμές μεγάλωνε σημαντικά το σφάλμα, ενώ για πολύ μικρές ο ελεγκτής παρουσιάζει μεγάλες διαταραχές που καθιστούν την υλοποίησή του ανέφικτη.
+\section{Μέρος B}
+Το δυναμικό σύστημα του ρομπότ μπορεί να γραφεί γραμμικά ως προς τις άγνωστες σταθερές παραμέτρους ως
+\[h\ddot{\theta}+b\dot{\theta}+a cos(\theta)=\textbf{Z}(\ddot{\theta},\dot{\theta},\theta)^{T}\textbf{Y}=
+\begin{bmatrix}
+\ddot{\theta} & \dot{\theta} & cos(\theta)
+\end{bmatrix}
+\begin{bmatrix}
+h \\
+b \\
+a
+\end{bmatrix}
+\]
+όπου
+\[ \textbf{Y}= \begin{bmatrix}
+h \\
+b \\
+a
+\end{bmatrix} \qquad
+\textbf{Z}(\ddot{\theta},\dot{\theta},\theta) =
+\begin{bmatrix}
+\ddot{\theta} \\
+\dot{\theta} \\
+cos(\theta)
+\end{bmatrix} \quad (2.1) \] 
+Ορίζουμε την ταχύτητα αναφοράς, για κάποια σταθερά $\lambda>0$ ως
+\[ v_r=\dot{\theta_d}-\lambda \tilde{\theta} \Rightarrow \dot{\theta_d}= v_r + \lambda \tilde{\theta}  \quad (2.2) \] 
+και το σφάλμα παρακολούθησης θέσης 
+\[ \tilde{\theta}=\theta-\theta_d \Rightarrow \theta = \tilde{\theta}+\theta_d  \quad (2.3)\]
+Αν επιλέξουμε το σήμα ελέγχου
+\[ u= \textbf{Z}(\dot{v_r},v_r,\theta)^{T}\hat{\textbf{Y}}-ds \]
+όπου $s=\dot{\tilde{\theta}}+\lambda\tilde{\theta}$ το συνδιασμένο σφάλμα παρακολούθησης και $d>0$ σταθερά ελέγχου. Επιστρέφοντας στο αρχικό σύστημα έχουμε
+\[h\ddot{\theta}+b\dot{\theta}+a cos(\theta)=u  \xRightarrow{(2.3)} \]
+\[ u=h(\ddot{\tilde{\theta}} + \ddot{\theta_d} ) + b(\dot{\tilde{\theta}} + \dot{\theta_d} ) +a cos(\theta) \xRightarrow{(2.2)} \]
+\[ u=h(\ddot{\tilde{\theta}} + \dot{v_r} + \lambda \dot{\tilde{\theta}} ) + b(\dot{\tilde{\theta}} + v_r + \lambda \tilde{\theta} ) +a cos(\theta) \Rightarrow \]
+\[ u=h(\ddot{\tilde{\theta}}  + \lambda \dot{\tilde{\theta}} ) + b(\dot{\tilde{\theta}}  + \lambda \tilde{\theta} )+ h\dot{v_r} + bv_r+a  cos(\theta) \Rightarrow \]
+\[ u= h \dot{s} + b s + h\dot{v_r} + bv_r+a  cos(\theta) \Rightarrow \]
+\[ \textbf{Z}(\dot{v_r},v_r,\theta)^{T}\hat{\textbf{Y}}-ds = h \dot{s} + b s + \textbf{Z}(\dot{v_r},v_r,\theta)^{T}\textbf{Y} \Rightarrow \]
+\[ \boxed{ h \dot{s} + (b+d) s = \textbf{Z}(\dot{v_r},v_r,\theta)^{T} \left( \hat{\textbf{Y}} - \textbf{Y} \right) } \quad (2.4) \]
+\subsection{Ερώτημα Ι}
+Όταν το διάνυσμα $\textbf{Y}$ είναι γνωστό, οι εκτιμήσεις συμπίπτουν με τις πραγματικές τιμές των παραμέτρων οπότε,
+\[ \hat{\textbf{Y}} = \textbf{Y} \Rightarrow h \dot{s} + (b+d) s = 0 \Rightarrow \]
+\[  \dot{s} + \frac{(b+d)}{h} s = 0 \Rightarrow \]
+\[ s(t)= s(0)e^{-\frac{(b+d)}{h}t} \quad (2.5) \]
+Και στη συνέχεια
+\[ \dot{\tilde{\theta}}(t)+\lambda\tilde{\theta}(t)= s(0)e^{-\frac{(b+d)}{h}t} \Rightarrow\]
+\[\tilde{\theta}(t)= \frac{hs(0)}{h \lambda +b+d}e^{-\frac{(b+d)}{h}t}+ce^{- \lambda t} , \quad c \in \mathbb{R} \]
+Eπομένως
+\[ \boxed {\lim_{t \to +\infty }\tilde{\theta} =0} \]
+και από την $(2.5)$
+\[ \lim_{t \to +\infty } s(t) = 0 \Rightarrow \lim_{t \to +\infty } ( \dot{\tilde{\theta}}+\lambda\tilde{\theta} ) = 0 \Rightarrow 0 =\lim_{t \to +\infty }\dot{\tilde{\theta}}+0 \Rightarrow \]
+\[ \boxed {\lim_{t \to +\infty }\dot{\tilde{\theta}} =0} \]
+Δηλαδή τα σφάλματα θέσης $\tilde{\theta} $ και ταχύτητας $\dot{\tilde{\theta}}$ συγκλίνουν στο μηδέν.
+\subsection{Ερώτημα ΙΙ}
+ Από την (2.4) έχουμε
+\[  h \dot{s}= -(b+d) s + \textbf{Z}(\dot{v_r},v_r,\theta)^{T} \left( \hat{\textbf{Y}} - \textbf{Y} \right)\]
+Θεωρούμε τη θετικά ορισμένη και μη φραγμένη ακτινικά υποψήφια συνάρτηση Lyapunov, για κάποια θετική σταθερά $\gamma$, ως
+\[ V =\frac{h}{2}s^2 + \frac{1}{2 \gamma}\left( \hat{\textbf{Y}} - \textbf{Y} \right)^T \left( \hat{\textbf{Y}} - \textbf{Y} \right) \succ 0 \]
+με χρονική παράγωγο,
+\[ \dot{V} = sh\dot{s} +\frac{1}{\gamma}\dot{\hat{\textbf{Y}}}^{Τ} \left( \hat{\textbf{Y}} - \textbf{Y} \right)
+\Rightarrow\]
+\[ \dot{V}=-(b+d)s^2+ s \textbf{Z}(\dot{v_r},v_r,\theta)^{T}\left( \hat{\textbf{Y}} - \textbf{Y} \right)+ \frac{1}{\gamma}\dot{\hat{\textbf{Y}}}^{Τ} \left( \hat{\textbf{Y}} - \textbf{Y} \right) \Rightarrow \]
+\[ \dot{V}=-(b+d)s^2+  \frac{1}{\gamma}\left( \gamma s \textbf{Z}(\dot{v_r},v_r,\theta)^{T}+\dot{\hat{\textbf{Y}}}^{Τ} \right) \left( \hat{\textbf{Y}} - \textbf{Y} \right) \Rightarrow  \]
+\[ \dot{V}=-(b+d)s^2+ \frac{1}{\gamma} \left( \gamma s \textbf{Z}(\dot{v_r},v_r,\theta)+\dot{\hat{\textbf{Y}}} \right)^{T} \left( \hat{\textbf{Y}} - \textbf{Y} \right) \]
+οπότε αν επιλέξουμε
+\[ \dot{\hat{\textbf{Y}}} =  -\gamma s \textbf{Z}(\dot{v_r},v_r,\theta) \]
+τότε
+\[ \dot{V} = -(b+d)s^2 \preceq 0 \]
+που είναι αρνητικά ημιορισμένη (αφού οι σταθερές $b$ και $d$ είναι θετικές). Άρα η $V$ είναι φθίνουσα συνάρτηση του χρόνου, δηλαδή
+\[ 0 \leq V(t)\leq V(0) \]
+φραγμένη που σημαίνει ότι και τα $s \in L_{\infty} , \hat{\textbf{Y}} \in L_{\infty} $ (φραγμένα). Επιπλέον,  από την $(2.2)$ οι $\dot{v_r},v_r$ και $cos(\theta)$ φραγμένες, άρα και το $\textbf{Z}(\dot{v_r},v_r,\theta)$ φραγμένο. Τέλος, από την $(2.4)$ έχουμε $\dot{s} \in L_{\infty} $. Επομένως,
+\[\ddot{V}=-(b+d)s\dot{s}\]
+φραγμένη, άρα η $\dot{V}$ ομοιόμορφα συνεχής. Χρησιμοποιώντας το λήμμα του Barbalat,
+\[ \lim_{t \to +\infty } \dot{V}(t) = 0 \Rightarrow \lim_{t \to +\infty } s(t) = 0 \]
+Και τελικά επειδή η $V$ είναι κάτω φραγμένη και φθίνουσα, έχει όριο στο άπειρο, έστω $V_{\infty}$, επομένως
+\[ \lim_{t \to +\infty } V(t) =V_{\infty} \Rightarrow \lim_{t \to +\infty } \frac{1}{2 \gamma}\left( \hat{\textbf{Y}} - \textbf{Y} \right)^T \left( \hat{\textbf{Y}} - \textbf{Y} \right) = V_{\infty} \Rightarrow\]
+\[\boxed{\lim_{t \to +\infty } \left( \hat{\textbf{Y}} - \textbf{Y} \right)^T \left( \hat{\textbf{Y}} - \textbf{Y} \right) =  2 \gamma  V_{\infty}}\]
+δηλαδή το σφάλμα εκτίμησης των παραμέτρων συγκλίνει ασυμπτωτικά σε κάποια σταθερή τιμή. Αποδικνύεται ότι υπό ορισμένες συνθήκες (Συνθήκη Επιμένουσας Διέγερσης - Persistence of Excitation Condition), όπως στην προκειμένη περίπτωση κρίνοντας εκ του αποτελέσματος, η σταθερή αυτή τιμή είναι μηδενική.
+\subsection{Ερώτημα ΙΙΙ}
+ Στη συνέχεια έχουμε 
+\[ \textbf{Z}(\dot{v_r},v_r,\theta) = \begin{bmatrix}
+\dot{v_r} & v_r & a cos(\theta)
+\end{bmatrix} \xRightarrow{(2.2)} \]
+\[
+\textbf{Z}(\dot{v_r},v_r,\theta) = \begin{bmatrix}
+\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda \dot{\theta} & \dot{\theta_d}+\lambda \theta_d-\lambda \theta & a cos(\theta)
+\end{bmatrix} \quad (2.6) \]
+και
+\[s=\dot{\tilde{\theta}}+\lambda\tilde{\theta} \xRightarrow{(2.3)} s = \dot{\theta}-\dot{\theta_d} + \lambda \theta- \lambda \theta_d \Rightarrow \]
+\[ -s =\dot{\theta_d} + \lambda \theta_d -\dot{\theta}-\lambda \theta \quad (2.7) \]
+Για τον ελεγχτή έχουμε
+\[ u = \textbf{Z}(\dot{v_r},v_r,\theta)^{T}\hat{\textbf{Y}}-ds \Rightarrow \]
+\[ u= 
+\begin{bmatrix}
+\dot{v_r} & v_r & cos(\theta)
+\end{bmatrix}
+ \begin{bmatrix}
+\hat{h} \\ \hat{b} \\ \hat{a}
+\end{bmatrix} -ds \xRightarrow{(2.6)}\]
+\[ u =  \begin{bmatrix}
+\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda \dot{\theta} && \dot{\theta_d}+\lambda \theta_d-\lambda \theta && cos(\theta)
+\end{bmatrix} \begin{bmatrix}
+\hat{h} \\ \hat{b} \\ \hat{a}
+\end{bmatrix} -ds \xRightarrow{(2.7)} \]
+\[ u = \hat{h}(\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda \dot{\theta})+\hat{b}(\dot{\theta_d}+\lambda \theta_d-\lambda \theta) +\hat{a}cos(\theta) +d(\dot{\theta_d} + \lambda \theta_d -\dot{\theta}-\lambda \theta) \]
+Επιστρέφοντας στο αρχικό σύστημα
+\\
+$ \left\{
+                \begin{array}{ll}
+                  x_{1}=\theta \\
+                  x_{2}=\dot{\theta}             
+                \end{array}
+              \right.$
+              \quad άρα \quad
+$ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=\dot{ \theta}=x_{2} \\
+                  \dot{ x_{2} } = \ddot{ \theta }= -\frac{b}{h}\ x_2 - \frac{a}{h} cos(x_1)+\frac{1}{h}u
+
+                \end{array}
+              \right. 
+\Rightarrow $
+\[ \left\{
+                \begin{array}{ll}
+                  \dot{x_{1}}=x_{2}  \quad (2.8) \\ \\
+                  \dot{ x_{2} } =
+                   -\frac{b}{h}\ x_2 - \frac{a}{h} cos(x_1)+ \frac{\hat{h}}{h}(\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda x_2)+
+                  \qquad  \\ \qquad \qquad \qquad \qquad \qquad  \frac{\hat{b}}{h}(\dot{\theta_d}+\lambda \theta_d-\lambda x_1) +\frac{\hat{a}}{h}cos(x_1) +\frac{d}{h}(\dot{\theta_d} + \lambda \theta_d -x_2-\lambda x_1) 
+ \quad (2.9) 
+                \end{array}
+              \right. 
+\]
+\\
+και
+\\
+\[ \dot{\hat{\textbf{Y}}} =  -\gamma s \textbf{Z}(\dot{v_r},v_r,\theta) \xRightarrow{(2.6),(2.7)} \]
+\[\dot{\hat{\textbf{Y}}} = \begin{bmatrix}
+\dot{\hat{h}} \\
+\dot{\hat{b}} \\
+\dot{\hat{a}}
+\end{bmatrix} = \gamma(\dot{\theta_d} + \lambda \theta_d -\dot{\theta}-\lambda \theta) \begin{bmatrix}
+\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda \dot{\theta} \\
+\dot{\theta_d}+\lambda \theta_d-\lambda \theta \\
+ cos(\theta)
+\end{bmatrix} \Rightarrow \]
+\[ \left\{
+                \begin{array}{ll}
+                  \dot{\hat{h}}= \gamma(\dot{\theta_d} + \lambda \theta_d -x_2-\lambda x_1)(\ddot{\theta_d}+\lambda\dot{\theta_d}-\lambda x_2) \quad (2.10) \\
+                 \dot{\hat{b}}=\gamma(\dot{\theta_d} + \lambda \theta_d -x_2-\lambda x_1)(\dot{\theta_d}+\lambda \theta_d-\lambda x_1) \quad (2.11)\\
+                           \dot{\hat{a}}=\gamma(\dot{\theta_d} + \lambda \theta_d -x_2-\lambda x_1) cos(x_1) \quad (2.12)
+                \end{array}
+              \right.
+\]
+Επιλύοντας το σύστημα των διαφορικών εξισώσεων (2.8)-(2.12) με αρχικές τιμές $(\frac{\pi}{2},0,0.18,0.005,9.8)$ βρίσκουμε τις χρονικές αποκρίσεις της θέσης, ταχύτητας, σφάλματος θέσης, σφάλματος ταχύτητας, του συνδιασμένου σφάλματος s καθώς και των των προσαρμοζόμενων παραμέτρων $\hat{h},\hat{b},\hat{a}$ για τις δύο εισόδους ελέγχου $\theta_d(t)$. Επισημαίνουμε, επίσης, ότι για λόγους καλής λειτουργίας του ελεγκτή θέσαμε ως άνω όριο την τιμή $R=50$.
+\\ \\
+Για την επίλυση του παραπάνω συστήματος διαφορικών εξισώσεων χρηισμοοποιήθηκε η συνάρτηση $ode45$ της $Matlab$ ενώ επιλέχθηκαν $d=9$, $\gamma=10$ και $\lambda=12$ που δίνουν ικανοποιητικά αποτελέσματα, και συγκεκριμένα για τις δύο εισόδους $\theta_d$ αντίστοιχα
+\[ \hat{h}=0.499988544868833 \qquad\qquad \hat{h}=0.499990258149467 \]
+\[ \hat{b}=0.008986855075653 \qquad\qquad \hat{b}=0.009023845691270 \]
+\[ \hat{a}=12.739957198928296 \qquad\qquad \hat{a}=12.739953084506539 \]
+Οι γραφικές παραστάσεις των αποκρίσεων για τη θέση, την ταχύτητα, το σφάλμα θέσης και ταχύτητας, το συνδιασμένο σφάλμα και τις προσαρμοζόμενες παραμέτρους με συχνότητα δειγματοληψίας $10kHz$ για 100 δευτερόλεπτα φαίνονται αντίστοιχα στα Σχήματα 2.1 έως 2.8 όταν $\theta_d(t)=\frac{\pi}{2}cos(\pi t)$ .
+\\
+\includegraphics[width=\linewidth]{p_1.jpg}
+\centerline{Σχήμα 2.1: Απόκριση Συστήματος - Θέση}
+\\ \\
+\includegraphics[width=\linewidth]{v_1.jpg}
+\centerline{Σχήμα 2.2: Απόκριση Συστήματος - Ταχύτητα}
+\\ \\
+\includegraphics[width=\linewidth]{p_error_1.jpg}
+\centerline{Σχήμα 2.3: Σφάλμα Θέσης Συστήματος}
+\\ \\
+\includegraphics[width=\linewidth]{v_error_1.jpg}
+\centerline{Σχήμα 2.4: Σφάλμα Ταχύτητας Συστήματος}
+\\ \\
+\includegraphics[width=\linewidth]{s_error_1.jpg}
+\centerline{Σχήμα 2.5:  Συνδιασμένο Σφάλμα Παρακολούθησης}
+\\ \\
+\includegraphics[width=\linewidth]{h_est_1.jpg}
+\centerline{Σχήμα 2.6:  Εκτίμιση Παραμέτρου $\hat{h}$}
+\\ \\
+\includegraphics[width=\linewidth]{b_est_1.jpg}
+\centerline{Σχήμα 2.7:  Εκτίμιση Παραμέτρου $\hat{b}$}
+\\ \\
+\includegraphics[width=\linewidth]{a_est_1.jpg}
+\centerline{Σχήμα 2.8:  Εκτίμιση Παραμέτρου $\hat{a}$}
+\\ \\
+Οι αντίστοιχες γραφικές παραστάσεις για $\theta_d(t)=\frac{\pi}{2}cos(2\pi t)$ φαίνονται στα Σχήματα 2.9 έως 2.16
+\\
+\includegraphics[width=\linewidth]{p_2.jpg}
+\centerline{Σχήμα 2.9: Απόκριση Συστήματος - Θέση}
+\\ \\
+\includegraphics[width=\linewidth]{v_2.jpg}
+\centerline{Σχήμα 2.10: Απόκριση Συστήματος - Ταχύτητα}
+\\ \\
+\includegraphics[width=\linewidth]{p_error_2.jpg}
+\centerline{Σχήμα 2.11: Σφάλμα Θέσης Συστήματος}
+\\ \\
+\includegraphics[width=\linewidth]{v_error_2.jpg}
+\centerline{Σχήμα 2.12: Σφάλμα Ταχύτητας Συστήματος}
+\\ \\
+\includegraphics[width=\linewidth]{s_error_2.jpg}
+\centerline{Σχήμα 2.13:  Συνδιασμένο Σφάλμα Παρακολούθησης}
+\\ \\
+\includegraphics[width=\linewidth]{h_est_2.jpg}
+\centerline{Σχήμα 2.14:  Εκτίμιση Παραμέτρου $\hat{h}$}
+\\
+\includegraphics[width=\linewidth]{b_est_2.jpg}
+\centerline{Σχήμα 2.15:  Εκτίμιση Παραμέτρου $\hat{b}$}
+\\
+\includegraphics[width=\linewidth]{a_est_2.jpg}
+\centerline{Σχήμα 2.16:  Εκτίμιση Παραμέτρου $\hat{a}$}
+\\ \\
+Όπως βλέπουμε και από τις γραφικές παραστάσεις οι εκτιμήσεις των παραμέτρων συγκλίνουν προσεγγιστικά στις πραγματικές τους τιμές και για τις δύο εισόδους $\theta_d(t)$. Τα σφάλματα ταχύτητας και θέσης είναι τάξης του χιλιοστού μετά την πάροδο ορισμένου χρόνου.
+\end{document}
