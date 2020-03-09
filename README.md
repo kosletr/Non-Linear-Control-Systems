@@ -7,11 +7,13 @@ This repository contains code written by me, Konstantinos Letros, as a project f
 ## Implementations
 
 ### Part 1 - Behavioral Analysis of a Non Linear System
-This part contains the behavioral analysis of a system including the non linear function M shown bellow. Behavioral Anaylisis is achivied by using different inputs r, initial conditions x(0) and by plotting different enlightening graphs.
+This part contains the behavioral analysis of a system including the non linear function M shown bellow.
 
-Block Diagram              |  Response Example
+Block Diagram              |  Non Linear Function m(e)
 :-------------------------:|:-------------------------:
 ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/1b.jpg)  |  ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/m_func.jpg)
+
+Behavioral Anaylisis is achivied by using different inputs r, initial conditions x(0) and by plotting different enlightening graphs.
 
 ![Response Example](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/resp13.jpg)
 
