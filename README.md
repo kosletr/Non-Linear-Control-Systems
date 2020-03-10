@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains code written by me, Konstantinos Letros, as a project for Non Linear Control Systems (Control Systems III) course during the 7th semester (academic year: 2018-2019) of my undergraduate studies in Electrical Engineering (Section: Electronics and Computer Science) at Aristotle Univeristy of Thessaloniki. 
+This repository contains code written by me, Konstantinos Letros, as a project for Non Linear Control Systems (Control Systems III) course during the 7th semester (academic year: 2018-2019) of my undergraduate studies in Electrical Engineering (Section: Electronics and Computer Science) at Aristotle University of Thessaloniki. 
 
 ## Implementations
 
@@ -20,7 +20,7 @@ Behavioral Anaylisis is achivied by using different inputs r, initial conditions
 
 ### Part B - Control of a Non Linear Robotic System
 
-This part contains the construction and derivation of a suitable non linear controller as well as the corresponding non linear control analysis to prove system's stability. Moreover, in order to approach a realistic scenario, all of the parameters taken place have uncertainties.
+This part contains the construction and derivation of a suitable non linear controller as well as the corresponding non linear control analysis to prove system's stability. Moreover, in order to approach a more realistic scenario, all of the parameter-values taken place are not exactly known, but have uncertainties.
 
 ![Robotic_System](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/robot.png)
 
@@ -37,6 +37,6 @@ b Parameter Estimation     |  h Parameter Estimation
 ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/b_est_1.jpg)  |  ![](https://github.com/kosletr/Non-Linear-Control-Systems/blob/master/Latex/h_est_1.jpg)
 
 ## Applications used for this implementation:
- - MathWorks MATLAB
+ - MathWorks MATLAB R2018b
  - MiKTeX
  - Texmaker
